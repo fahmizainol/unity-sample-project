@@ -6,39 +6,29 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    // [SerializeField] private InputReaderSO inputReader;
+    [SerializeField] private InputReaderSO _inputReader;
 
-    public GameInput GameInput;
+    public Vector2 _inputVector;
+    private bool _isFacingRight = true;
+    private PlayerStateMachine _stateMachine;
 
-    Rigidbody2D RB;
-    Animator Anim;
+    public float Speed = 10f;
 
-
-    public enum PlayerStates
-    {
-        Idle,
-        Walk,
-        Run,
-        Attack,
-        Jump,
-        Rise,
-        Fall,
-    }
+    public Rigidbody2D RB;
+    public Animator Anim;
 
     void Awake()
     {
         Debug.Log("player awake");
         RB = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
-        GameInput = new GameInput();
-        GameInput.Player.SetCallbacks((GameInput.IPlayerActions)this);
 
+        _inputReader.EnablePlayerInput();
     }
 
     void Start()
     {
-
-        Debug.Log(inputReader.test);
+        _inputReader.MoveEvent += HandleMove;
     }
 
 
@@ -46,10 +36,32 @@ public class Player : MonoBehaviour
     void Update()
     {
         // inputReader.MoveEvent += OnMove;
+        RB.velocity = new Vector2(_inputVector.x * Speed, RB.velocity.y);
 
     }
-    public void OnMove(Vector2 vec)
+
+    private void SetFacingDirection(Vector2 inputVector)
     {
-        Debug.Log("am moving");
+        if (_inputVector.x > 0)
+        {
+            transform.localScale = new Vector2(1, 1);
+        }
+        else if (_inputVector.x < 0)
+        {
+            transform.localScale = new Vector2(-1, 1);
+        }
     }
+
+    // EVENT LISTENERS 
+    // NOTE: will be called as a callback which is then used to set the property of this 
+    // Player class to the argument
+    private void HandleMove(Vector2 inputVector)
+    {
+        _inputVector = inputVector;
+        SetFacingDirection(_inputVector);
+    }
+
+
 }
+
+// T: If the state is tied to the input, 

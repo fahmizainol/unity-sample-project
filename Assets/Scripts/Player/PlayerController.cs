@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput; // can be checked by referring to PlayerInputActions > Action Properties
     Rigidbody2D rb;
     Animator animator;
+    // TouchingDirections touchingDirections;
 
     public float walkSpeed = 5f;
     public float airWalkSpeed = 5f;
@@ -24,13 +25,14 @@ public class PlayerController : MonoBehaviour
         // TODO: Make a runnning jump logic
         get
         {
+            // if (!CanMove) return 0; // Movement locked!
             // if (!IsMoving || touchingDirections.IsOnWall) return 0; // idle speed
             // if (!touchingDirections.IsGrounded) return walkSpeed; // In the air
             // if (!touchingDirections.IsGrounded && IsRunning) return runSpeed; // In the air
-            // if (IsRunning)
-            //     return runSpeed;
-            // else
-            return walkSpeed;
+            if (IsRunning)
+                return runSpeed;
+            else
+                return walkSpeed;
         }
         set
         {
@@ -38,8 +40,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private float attackDelay = 0.3f;
-
+    // private float attackDelay = 0.3f;
+    // public bool CanMove
+    // {
+    //     get
+    //     {
+    //         // return animator.GetBool(AnimationStrings.canMove);
+    //     }
+    //     set
+    //     {
+    //         // animator.SetBool(AnimationStrings.canMove, value);
+    //     }
+    // }
 
 
     private bool _isFacingRight = true;
@@ -67,6 +79,7 @@ public class PlayerController : MonoBehaviour
         set
         {
             _isMoving = value;
+            // animator.SetBool(AnimationStrings.isMoving, value);
         }
     }
 
@@ -81,6 +94,7 @@ public class PlayerController : MonoBehaviour
         set
         {
             _isRunning = value;
+            // animator.SetBool(AnimationStrings.isRunning, value);
         }
     }
 
@@ -96,6 +110,7 @@ public class PlayerController : MonoBehaviour
         set
         {
             _isJumping = value;
+            // animator.SetBool(AnimationStrings.isJumping, value);
         }
     }
 
@@ -103,6 +118,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();  // is referencing the property of RigidBody rb 
         animator = GetComponent<Animator>();
+        // touchingDirections = GetComponent<TouchingDirections>();
+        // CanMove = true;
     }
 
     // NOTE: Flipping the scale instead of flipping the sprite in the Sprite Renderer because it will make it easier for the child
@@ -123,7 +140,25 @@ public class PlayerController : MonoBehaviour
     // In short, normally physics calculations are best done in FixedUpdate, such as rigidbody velocity, etc.
     // FixedUpdate should generally be used anytime you are adding forces directly to a rigidbody.4 Dec 2021
 
+    private void FixedUpdate()
+    {
 
+        //if (moveInput.y > 0 && touchingDirections.IsGrounded)
+        //{
+        //    verticalVelocity = moveInput.y * jumpSpeed;
+        //    // Wait two seconds
+
+        //}
+        //if (moveInput.y == 0 && !touchingDirections.IsGrounded)
+        //{
+        //    Debug.Log("y = 0 in air");
+        //    verticalVelocity = -3;
+        //}
+        //Debug.Log(verticalVelocity);
+
+        rb.velocity = new Vector2(moveInput.x * (CurrentMoveSpeed), rb.velocity.y);
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -144,8 +179,6 @@ public class PlayerController : MonoBehaviour
         IsMoving = moveInput != Vector2.zero;
 
         SetFacingDirection(moveInput);
-
-        Debug.Log("am moving");
     }
 
     public void onRun(InputAction.CallbackContext context)
@@ -168,6 +201,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("onJump");
         if (context.started)
         {
+            // touchingDirections.IsGrounded = false;
             IsJumping = true;
             rb.velocity = new Vector2(rb.velocity.x, 10f);
 
@@ -189,10 +223,10 @@ public class PlayerController : MonoBehaviour
 
 
 
-    private IEnumerator DelayAttack()
-    {
-        yield return new WaitForSeconds(attackDelay);
-    }
+    // private IEnumerator DelayAttack()
+    // {
+    //     yield return new WaitForSeconds(attackDelay);
+    // }
 }
 
 // NOTES on the full picture of what is happening 

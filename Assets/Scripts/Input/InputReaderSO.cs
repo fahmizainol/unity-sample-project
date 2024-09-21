@@ -19,7 +19,7 @@ public class InputReaderSO : ScriptableObject, GameInput.IPlayerActions
 
             Debug.Log("On Enable INputReaderSO");
 
-            SetPlayer();
+            // SetPlayer(); NOTE: Can't put it here need to call it from the MonoBehaviour class FFS
         }
         else
         {
@@ -27,7 +27,7 @@ public class InputReaderSO : ScriptableObject, GameInput.IPlayerActions
         }
     }
 
-    public void SetPlayer()
+    public void EnablePlayerInput()
     {
         _gameInput.Player.Enable();
     }
@@ -56,9 +56,10 @@ public class InputReaderSO : ScriptableObject, GameInput.IPlayerActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log($"Phase {context.phase} Value: {context.ReadValue<Vector2>()}");
-        Debug.Log("Onmove");
         MoveEvent?.Invoke(context.ReadValue<Vector2>());
+
+        Debug.Log($"Phase {context.phase} Value: {context.ReadValue<Vector2>()}");
+        // Debug.Log("Onmove");
     }
 
 
@@ -70,6 +71,5 @@ public class InputReaderSO : ScriptableObject, GameInput.IPlayerActions
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
     }
 }

@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a5ad92348a26e4791703f925f0c962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputReader: {fileID: 11400000, guid: c7276158c993be8459a543c9e7ad230d, type: 2}
+  _inputReader: {fileID: 11400000, guid: c7276158c993be8459a543c9e7ad230d, type: 2}
 --- !u!95 &533158664681820719
 Animator:
   serializedVersion: 5
