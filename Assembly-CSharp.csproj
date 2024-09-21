@@ -64,22 +64,15 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.46f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\StateMachine\Player\PlayerRunState.cs" />
-    <Compile Include="Assets\Scripts\StateMachine\Player\PlayerIdleState.cs" />
-    <Compile Include="Assets\Scripts\StateMachine\Enemy\EnemyIdleState.cs" />
-    <Compile Include="Assets\Scripts\StateMachine\Enemy\EnemyStateManager.cs" />
-    <Compile Include="Assets\Scripts\StateMachine\Player\PlayerJumpState.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\StateMachine\Player\PlayerAttackState.cs" />
-    <Compile Include="Assets\Scripts\StateMachine\Enemy\EnemyRunState.cs" />
-    <Compile Include="Assets\Scripts\InputManager.cs" />
-    <Compile Include="Assets\Scripts\AnimationStrings.cs" />
-    <Compile Include="Assets\Scripts\StateMachine\Player\PlayerStateManager.cs" />
-    <Compile Include="Assets\Scripts\ParallexEffect.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Others\singleton_example.cs" />
+    <Compile Include="Assets\Scripts\Input\GameInput.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Managers\InputManager.cs" />
     <Compile Include="Assets\Scripts\TouchingDirections.cs" />
     <Compile Include="Assets\Script.cs" />
-    <Compile Include="Assets\Scripts\StateMachine\IBaseState.cs" />
-    <Compile Include="Assets\Scripts\StateMachine\Player\PlayerWalkState.cs" />
+    <Compile Include="Assets\Scripts\Input\InputReaderSO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Audio\Music\08 SAMURAI BLADE\Assets_for_Unity\Read Me.txt" />
