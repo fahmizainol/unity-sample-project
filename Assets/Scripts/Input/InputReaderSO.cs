@@ -39,8 +39,8 @@ public class InputReaderSO : ScriptableObject, GameInput.IPlayerActions
     // Events are a way to implement Observer pattern in C# which is basically broadcasting an event that happen
     // in the lifecycle of the game. E.g: Kill 100 enemies achievement system etc
     public event Action<Vector2> MoveEvent;
-    // public event Action JumpEvent;
-    // public event Action JumpEventCancelled;
+    public event Action JumpEvent;
+    public event Action JumpEventCancelled;
     public void OnAttack(InputAction.CallbackContext context)
     {
 
@@ -50,7 +50,14 @@ public class InputReaderSO : ScriptableObject, GameInput.IPlayerActions
 
     public void OnJump(InputAction.CallbackContext context)
     {
-
+        if (context.phase == InputActionPhase.Performed)
+        {
+            JumpEvent?.Invoke();
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            JumpEventCancelled?.Invoke();
+        }
     }
 
 
