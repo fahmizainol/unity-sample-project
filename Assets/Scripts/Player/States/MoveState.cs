@@ -1,11 +1,15 @@
-
+using UnityEngine;
 public class MoveState : IBaseState
 {
 
     private Player _player;
-    public MoveState(Player player)
+    private PlayerStateMachine _stateMachine;
+
+
+    public MoveState(Player player, PlayerStateMachine stateMachine)
     {
         _player = player;
+        _stateMachine = stateMachine;
     }
 
     public void Enter()
@@ -19,10 +23,27 @@ public class MoveState : IBaseState
 
     public void Update()
     {
-        // Q: How would this class know about the current input
+        _player.RB.velocity = new Vector2(_player.moveVector.x * _player.Speed, _player.RB.velocity.y);
+        SetFacingDirection(_player.moveVector);
+        if (_player.moveVector.x == 0)
+        {
+            _stateMachine.SwitchState(_stateMachine.IdleState);
+        }
     }
 
     public void Transition()
     {
+    }
+
+    private void SetFacingDirection(Vector2 inputVector)
+    {
+        if (_player.moveVector.x > 0)
+        {
+            _player.transform.localScale = new Vector2(1, 1);
+        }
+        else if (_player.moveVector.x < 0)
+        {
+            _player.transform.localScale = new Vector2(-1, 1);
+        }
     }
 }

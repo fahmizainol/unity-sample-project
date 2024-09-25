@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerStateMachine : MonoBehaviour
+public class PlayerStateMachine
 {
     public enum PlayerStates
     {
@@ -19,28 +19,28 @@ public class PlayerStateMachine : MonoBehaviour
     public JumpState JumpState { get; set; }
 
 
-    private Player _player;
+    public Player _player;
 
     public PlayerStateMachine(Player player)
     {
         _player = player;
     }
 
-    private void Awake()
+    public void Init()
     {
-        IdleState = new IdleState(_player);
-        MoveState = new MoveState(_player);
-        JumpState = new JumpState(_player);
+        IdleState = new IdleState(_player, this);
+        MoveState = new MoveState(_player, this);
+        JumpState = new JumpState(_player, this);
         currentState = IdleState;
     }
 
-    private void Start()
+    public void Start()
     {
         currentState.Enter();
 
     }
 
-    private void Update()
+    public void Update()
     {
         currentState.Update();
     }

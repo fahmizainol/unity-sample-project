@@ -128,6 +128,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputReader: {fileID: 11400000, guid: c7276158c993be8459a543c9e7ad230d, type: 2}
+  inputVector: {x: 0, y: 0}
+  _stateMachine: {fileID: 0}
+  Speed: 10
+  RB: {fileID: 0}
+  Anim: {fileID: 0}
+  move: 0
+  jump: 0
 --- !u!95 &533158664681820719
 Animator:
   serializedVersion: 5

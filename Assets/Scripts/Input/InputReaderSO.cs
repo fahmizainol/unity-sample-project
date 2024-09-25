@@ -50,6 +50,8 @@ public class InputReaderSO : ScriptableObject, GameInput.IPlayerActions
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        Debug.Log($"Phase {context.phase}");
+
         if (context.phase == InputActionPhase.Performed)
         {
             JumpEvent?.Invoke();
@@ -65,7 +67,7 @@ public class InputReaderSO : ScriptableObject, GameInput.IPlayerActions
     {
         MoveEvent?.Invoke(context.ReadValue<Vector2>());
 
-        Debug.Log($"Phase {context.phase} Value: {context.ReadValue<Vector2>()}");
+        // Debug.Log($"Phase {context.phase} Value: {context.ReadValue<Vector2>()}");
         // Debug.Log("Onmove");
     }
 
