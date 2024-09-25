@@ -65,12 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\StateMachine\PlayerState.cs" />
-    <Compile Include="Assets\Scripts\Player\States\JumpState.cs" />
-    <Compile Include="Assets\Scripts\Player\States\IBaseState.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player\States\GroundedState\GroundedState.cs" />
+    <Compile Include="Assets\Scripts\Player\States\GroundedState\JumpState.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Player\States\IdleState.cs" />
-    <Compile Include="Assets\Scripts\Player\States\MoveState.cs" />
+    <Compile Include="Assets\Scripts\Player\States\GroundedState\MoveState.cs" />
+    <Compile Include="Assets\Scripts\Others\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player\States\GroundedState\IdleState.cs" />
     <Compile Include="Assets\Scripts\Others\singleton_example.cs" />
     <Compile Include="Assets\Scripts\Input\GameInput.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />

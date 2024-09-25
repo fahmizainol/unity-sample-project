@@ -1,5 +1,5 @@
 using UnityEngine;
-public class MoveState : PlayerState
+public class MoveState : GroundedState
 {
     public MoveState(Player player, PlayerStateMachine stateMachine, int animationHash) : base(player, stateMachine, animationHash)
     {
@@ -16,19 +16,17 @@ public class MoveState : PlayerState
 
     public override void Update()
     {
+        base.Update();
         Player.RB.velocity = new Vector2(Player.moveVector.x * Player.Speed, Player.RB.velocity.y);
-        SetFacingDirection(Player.moveVector);
-        if (Player.moveVector.x == 0)
-        {
-            PlayerStateMachine.SwitchState(PlayerStateMachine.IdleState);
-        }
+        // SetFacingDirection();
+
     }
 
     public void Transition()
     {
     }
 
-    private void SetFacingDirection(Vector2 inputVector)
+    private void SetFacingDirection()
     {
         if (Player.moveVector.x > 0)
         {

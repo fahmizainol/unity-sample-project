@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     public Vector2 moveVector;
     public bool jump;
+    public bool move;
 
     public PlayerStateMachine stateMachine;
 
@@ -32,7 +33,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        _inputReader.MoveEvent += (inputVector) => { moveVector = inputVector; };
+        _inputReader.MoveEvent += (inputVector) => { move = true; moveVector = inputVector; };
+        // _inputReader.MoveEventCancelled += () => { move = false; };
         _inputReader.JumpEvent += () => { jump = true; };
         _inputReader.JumpEventCancelled += () => { jump = false; };
     }
@@ -51,7 +53,10 @@ public class Player : MonoBehaviour
         // Frame 6: User releases W, RB.Velocity = 0m/s
         // RB.velocity = new Vector2(inputVector.x * Speed, RB.velocity.y);
 
+
         stateMachine.currentState.Update();
+
+        // Debug.Log($"Current State: {stateMachine.currentState.ToString()}");
 
     }
 

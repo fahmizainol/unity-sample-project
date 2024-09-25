@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-public class JumpState : PlayerState
+public class JumpState : GroundedState
 {
 
 
@@ -22,11 +22,10 @@ public class JumpState : PlayerState
 
     public override void Update()
     {
+        base.Update();
+
         Player.RB.velocity = new Vector2(Player.RB.velocity.x, Player.Speed);
-        if (!Player.jump)
-        {
-            PlayerStateMachine.SwitchState(PlayerStateMachine.IdleState);
-        }
+
     }
 
     public void Transition()

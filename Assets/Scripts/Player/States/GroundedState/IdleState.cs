@@ -1,5 +1,5 @@
 
-public class IdleState : PlayerState
+public class IdleState : GroundedState
 {
     // IDEA: Give a isGrounded property to States
     public IdleState(Player player, PlayerStateMachine stateMachine, int animationHash) : base(player, stateMachine, animationHash)
@@ -17,15 +17,7 @@ public class IdleState : PlayerState
 
     public override void Update()
     {
-        if (Player.moveVector.x != 0)
-        {
-            PlayerStateMachine.SwitchState(PlayerStateMachine.MoveState);
-        }
-
-        if (Player.jump)
-        {
-            PlayerStateMachine.SwitchState(PlayerStateMachine.JumpState);
-        }
+        base.Update();
     }
 
     public void Transition()
