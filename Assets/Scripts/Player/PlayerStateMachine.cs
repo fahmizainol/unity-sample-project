@@ -13,24 +13,32 @@ public class PlayerStateMachine
         Fall,
     }
 
-    public IBaseState currentState { get; set; }
+    public PlayerState currentState { get; set; }
     public IdleState IdleState { get; set; }
     public MoveState MoveState { get; set; }
     public JumpState JumpState { get; set; }
 
+    public int idleHash = Animator.StringToHash("player_idle");
+    public int walkHash = Animator.StringToHash("player_walk");
+    public int runHash = Animator.StringToHash("player_run");
+    public int attackHash = Animator.StringToHash("player_attack");
+    public int jumpHash = Animator.StringToHash("player_jump");
+    public int riseHash = Animator.StringToHash("player_rise");
+    public int fallHash = Animator.StringToHash("player_fall");
 
-    public Player _player;
+
+    public Player Player;
 
     public PlayerStateMachine(Player player)
     {
-        _player = player;
+        Player = player;
     }
 
     public void Init()
     {
-        IdleState = new IdleState(_player, this);
-        MoveState = new MoveState(_player, this);
-        JumpState = new JumpState(_player, this);
+        IdleState = new IdleState(Player, this, idleHash);
+        MoveState = new MoveState(Player, this, walkHash);
+        JumpState = new JumpState(Player, this, jumpHash);
         currentState = IdleState;
     }
 
@@ -45,7 +53,8 @@ public class PlayerStateMachine
         currentState.Update();
     }
 
-    public void SwitchState(IBaseState newState)
+
+    public void SwitchState(PlayerState newState)
     {
         currentState.Exit();
         currentState = newState;

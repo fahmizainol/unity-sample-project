@@ -1,35 +1,30 @@
 
-public class IdleState : IBaseState
+public class IdleState : PlayerState
 {
-
-    private Player _player;
-    private PlayerStateMachine _stateMachine;
     // IDEA: Give a isGrounded property to States
-    public IdleState(Player player, PlayerStateMachine stateMachine)
-    {
-        _player = player;
-        _stateMachine = stateMachine;
-    }
-
-    public void Enter()
-    {
-        _player.Anim.Play("player_idle");
-    }
-
-    public void Exit()
+    public IdleState(Player player, PlayerStateMachine stateMachine, int animationHash) : base(player, stateMachine, animationHash)
     {
     }
 
-    public void Update()
+    public override void Enter()
     {
-        if (_player.moveVector.x != 0)
+        base.Enter();
+    }
+
+    public override void Exit()
+    {
+    }
+
+    public override void Update()
+    {
+        if (Player.moveVector.x != 0)
         {
-            _stateMachine.SwitchState(_stateMachine.MoveState);
+            PlayerStateMachine.SwitchState(PlayerStateMachine.MoveState);
         }
 
-        if (_player.jump)
+        if (Player.jump)
         {
-            _stateMachine.SwitchState(_stateMachine.JumpState);
+            PlayerStateMachine.SwitchState(PlayerStateMachine.JumpState);
         }
     }
 

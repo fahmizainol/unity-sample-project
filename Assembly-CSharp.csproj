@@ -64,6 +64,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.46f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\StateMachine\PlayerState.cs" />
     <Compile Include="Assets\Scripts\Player\States\JumpState.cs" />
     <Compile Include="Assets\Scripts\Player\States\IBaseState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />

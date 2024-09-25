@@ -1,33 +1,31 @@
 
 using UnityEngine;
 
-public class JumpState : IBaseState
+public class JumpState : PlayerState
 {
 
-    private Player _player;
-    private PlayerStateMachine _stateMachine;
 
-    public JumpState(Player player, PlayerStateMachine stateMachine)
-    {
-        _player = player;
-        _stateMachine = stateMachine;
-    }
 
-    public void Enter()
-    {
-        _player.Anim.Play("player_jump");
-    }
-
-    public void Exit()
+    public JumpState(Player player, PlayerStateMachine stateMachine, int animationHash) : base(player, stateMachine, animationHash)
     {
     }
 
-    public void Update()
+    public override void Enter()
     {
-        _player.RB.velocity = new Vector2(_player.RB.velocity.x, _player.Speed);
-        if (!_player.jump)
+        base.Enter();
+
+    }
+
+    public override void Exit()
+    {
+    }
+
+    public override void Update()
+    {
+        Player.RB.velocity = new Vector2(Player.RB.velocity.x, Player.Speed);
+        if (!Player.jump)
         {
-            _stateMachine.SwitchState(_stateMachine.IdleState);
+            PlayerStateMachine.SwitchState(PlayerStateMachine.IdleState);
         }
     }
 
