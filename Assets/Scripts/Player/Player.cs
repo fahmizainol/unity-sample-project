@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 
         stateMachine.currentState.Update();
 
-        // Debug.Log($"Current State: {stateMachine.currentState.ToString()}");
+        Debug.Log($"Current State: {stateMachine.currentState.ToString()}");
 
     }
 

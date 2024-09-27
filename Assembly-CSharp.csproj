@@ -66,17 +66,21 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\StateMachine\PlayerState.cs" />
     <Compile Include="Assets\Scripts\Player\States\GroundedState\GroundedState.cs" />
-    <Compile Include="Assets\Scripts\Player\States\GroundedState\JumpState.cs" />
+    <Compile Include="Assets\Scripts\Player\States\AirState\AirState.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Player\States\AirState\RiseState.cs" />
     <Compile Include="Assets\Scripts\Player\States\GroundedState\MoveState.cs" />
     <Compile Include="Assets\Scripts\Others\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\States\GroundedState\IdleState.cs" />
     <Compile Include="Assets\Scripts\Others\singleton_example.cs" />
+    <Compile Include="Assets\Scripts\Player\States\AirState\FallState.cs" />
     <Compile Include="Assets\Scripts\Input\GameInput.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Managers\InputManager.cs" />
     <Compile Include="Assets\Scripts\TouchingDirections.cs" />
+    <Compile Include="Assets\Scripts\Player\States\AirState\JumpState.cs" />
     <Compile Include="Assets\Script.cs" />
+    <Compile Include="Assets\Scripts\Player\States\AirState\AirMoveState.cs" />
     <Compile Include="Assets\Scripts\Input\InputReaderSO.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStateMachine.cs" />
   </ItemGroup>

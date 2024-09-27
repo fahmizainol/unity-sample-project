@@ -1,12 +1,12 @@
 
 using UnityEngine;
 
-public class JumpState : GroundedState
+public class FallState : AirState
 {
 
 
 
-    public JumpState(Player player, PlayerStateMachine stateMachine, int animationHash) : base(player, stateMachine, animationHash)
+    public FallState(Player player, PlayerStateMachine stateMachine, int animationHash) : base(player, stateMachine, animationHash)
     {
     }
 
@@ -16,6 +16,7 @@ public class JumpState : GroundedState
 
     }
 
+
     public override void Exit()
     {
     }
@@ -24,7 +25,8 @@ public class JumpState : GroundedState
     {
         base.Update();
 
-        Player.RB.velocity = new Vector2(Player.RB.velocity.x, Player.Speed);
+
+
 
     }
 

@@ -18,7 +18,7 @@ public class MoveState : GroundedState
     {
         base.Update();
         Player.RB.velocity = new Vector2(Player.moveVector.x * Player.Speed, Player.RB.velocity.y);
-        // SetFacingDirection();
+        SetFacingDirection();
 
     }
 
