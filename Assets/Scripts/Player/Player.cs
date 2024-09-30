@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
         Collider = GetComponent<CapsuleCollider2D>();
 
         GroundLayer = LayerMask.GetMask("Ground");
+
         stateMachine = new PlayerStateMachine(this);
         stateMachine.Init();
 

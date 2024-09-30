@@ -48,6 +48,10 @@ public class AirState : PlayerState
             Debug.Log($"MoveVector in Air: {Player.moveVector.x}");
             Player.RB.velocity = new Vector2(Player.moveVector.x * Player.Speed, Player.RB.velocity.y);
         }
+        if (!Player.jump)
+        {
+            Player.RB.AddForce(Physics2D.gravity * Player.RB.mass);
+        }
         SetFacingDirection();
     }
 

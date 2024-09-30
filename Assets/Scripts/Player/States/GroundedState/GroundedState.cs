@@ -12,7 +12,11 @@ public class GroundedState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (Player.moveVector.x != 0 && !Player.jump)
+        if (Player.jump)
+        {
+            PlayerStateMachine.SwitchState(PlayerStateMachine.JumpState);
+        }
+        else if (Player.moveVector.x != 0)
         {
             PlayerStateMachine.SwitchState(PlayerStateMachine.MoveState);
         }
@@ -21,10 +25,7 @@ public class GroundedState : PlayerState
         // {
         //     PlayerStateMachine.SwitchState(PlayerStateMachine.JumpState);
         // }
-        else if (Player.jump)
-        {
-            PlayerStateMachine.SwitchState(PlayerStateMachine.JumpState);
-        }
+
         else
         {
             PlayerStateMachine.SwitchState(PlayerStateMachine.IdleState);

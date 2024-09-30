@@ -13,7 +13,7 @@ public class JumpState : AirState
     public override void Enter()
     {
         base.Enter();
-        Player.RB.velocity = new Vector2(Player.RB.velocity.x, Player.Speed);
+        Player.RB.velocity = new Vector2(Player.RB.velocity.x, Player.Speed / 2);
 
     }
 
