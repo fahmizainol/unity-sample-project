@@ -17,14 +17,21 @@ public class MoveState : GroundedState
     public override void Update()
     {
         base.Update();
-        Player.RB.velocity = new Vector2(Player.moveVector.x * Player.Speed, Player.RB.velocity.y);
-        SetFacingDirection();
+
 
     }
 
     public void Transition()
     {
     }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+        Player.RB.velocity = new Vector2(Player.moveVector.x * Player.Speed, Player.RB.velocity.y);
+        SetFacingDirection();
+    }
+
 
     private void SetFacingDirection()
     {

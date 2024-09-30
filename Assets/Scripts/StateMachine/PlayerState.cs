@@ -5,6 +5,7 @@ public class PlayerState
     protected PlayerStateMachine PlayerStateMachine;
     protected int AnimationHash;
 
+
     public PlayerState(Player player, PlayerStateMachine stateMachine, int animationHash)
     {
         Player = player;
@@ -15,16 +16,29 @@ public class PlayerState
     public virtual void Enter()
     {
         Player.Anim.Play(AnimationHash);
+        CheckCollisions();
     }
 
-    public virtual void Exit() { }
+    public virtual void Exit()
+    {
+        Player.Anim.StopPlayback();
+    }
+
+    public virtual void CheckCollisions()
+    {
+        Player.IsGrounded = Player.CheckIsGrounded();
+
+    }
 
     public virtual void Update()
     {
 
     }
 
-
+    public virtual void PhysicsUpdate()
+    {
+        CheckCollisions();
+    }
 
 
 }

@@ -31,4 +31,9 @@ public class GroundedState : PlayerState
         }
 
     }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
 }

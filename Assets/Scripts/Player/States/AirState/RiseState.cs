@@ -29,4 +29,8 @@ public class RiseState : AirState
     public void Transition()
     {
     }
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
 }

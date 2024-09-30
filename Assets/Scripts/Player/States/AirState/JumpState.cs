@@ -31,4 +31,8 @@ public class JumpState : AirState
     public void Transition()
     {
     }
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
 }

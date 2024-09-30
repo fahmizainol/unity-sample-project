@@ -24,13 +24,13 @@ public class FallState : AirState
     public override void Update()
     {
         base.Update();
-
-
-
-
     }
 
     public void Transition()
     {
+    }
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
     }
 }

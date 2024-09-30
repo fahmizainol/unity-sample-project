@@ -14,10 +14,16 @@ public class Player : MonoBehaviour
 
     public PlayerStateMachine stateMachine;
 
+    // TODO: Refactor these values into PlayerData SO. 
     public float Speed = 10f;
+    public LayerMask GroundLayer;
+    public float groundCheckDistance = 0.10f;
+
+    public bool IsGrounded { get; set; }
 
     public Rigidbody2D RB;
     public Animator Anim;
+    public CapsuleCollider2D Collider;
 
 
     void Awake()
@@ -25,6 +31,9 @@ public class Player : MonoBehaviour
         Debug.Log("player awake");
         RB = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
+        Collider = GetComponent<CapsuleCollider2D>();
+
+        GroundLayer = LayerMask.GetMask("Ground");
         stateMachine = new PlayerStateMachine(this);
         stateMachine.Init();
 
@@ -34,7 +43,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         _inputReader.MoveEvent += (inputVector) => { move = true; moveVector = inputVector; };
-        // _inputReader.MoveEventCancelled += () => { move = false; };
+        _inputReader.MoveEventCancelled += () => { move = false; };
         _inputReader.JumpEvent += () => { jump = true; };
         _inputReader.JumpEventCancelled += () => { jump = false; };
     }
@@ -56,8 +65,33 @@ public class Player : MonoBehaviour
 
         stateMachine.currentState.Update();
 
+        // if (CheckIsGrounded())
+        // {
+        //     Debug.Log("grounded");
+        // }
+
         Debug.Log($"Current State: {stateMachine.currentState.ToString()}");
 
+    }
+
+    void FixedUpdate()
+    {
+        stateMachine.currentState.PhysicsUpdate();
+        Debug.Log($"Velolcity: {RB.velocity}");
+
+    }
+
+    public bool CheckIsGrounded()
+    {
+        // Cast a ray from the bottom of the collider
+        Vector2 rayOrigin = new Vector2(Collider.bounds.center.x, Collider.bounds.min.y);
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, groundCheckDistance, GroundLayer);
+
+        // Visualize the ray (optional, for debugging)
+        // Debug.DrawRay(rayOrigin, Vector2.down * groundCheckDistance, hit.collider != null ? Color.green : Color.red);
+        // Debug.Log(hit.collider != null);
+
+        return hit.collider != null;
     }
 
 
