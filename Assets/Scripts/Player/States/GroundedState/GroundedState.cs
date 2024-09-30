@@ -16,6 +16,10 @@ public class GroundedState : PlayerState
         {
             PlayerStateMachine.SwitchState(PlayerStateMachine.JumpState);
         }
+        else if (Player.attack)
+        {
+            PlayerStateMachine.SwitchState(PlayerStateMachine.AttackState);
+        }
         else if (Player.moveVector.x != 0)
         {
             PlayerStateMachine.SwitchState(PlayerStateMachine.MoveState);

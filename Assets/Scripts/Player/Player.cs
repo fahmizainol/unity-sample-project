@@ -8,19 +8,25 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private InputReaderSO _inputReader;
 
+    // INPUTS
     public Vector2 moveVector;
     public bool jump;
     public bool move;
+    public bool attack;
 
-    public PlayerStateMachine stateMachine;
+    // TIMERS
+    public float attackStartTime;
 
     // TODO: Refactor these values into PlayerData SO. 
+    // CONST
+    public float attackDuration = 1.5f;
     public float Speed = 10f;
-    public LayerMask GroundLayer;
     public float groundCheckDistance = 0.10f;
 
+    public LayerMask GroundLayer;
     public bool IsGrounded { get; set; }
 
+    public PlayerStateMachine stateMachine;
     public Rigidbody2D RB;
     public Animator Anim;
     public CapsuleCollider2D Collider;
@@ -47,6 +53,7 @@ public class Player : MonoBehaviour
         _inputReader.MoveEventCancelled += () => { move = false; };
         _inputReader.JumpEvent += () => { jump = true; };
         _inputReader.JumpEventCancelled += () => { jump = false; };
+        _inputReader.AttackEvent += () => { attack = true; attackStartTime = Time.time; };
     }
 
 
@@ -78,7 +85,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         stateMachine.currentState.PhysicsUpdate();
-        Debug.Log($"Velolcity: {RB.velocity}");
+        // Debug.Log($"Velolcity: {RB.velocity}");
 
     }
 

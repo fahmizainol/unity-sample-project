@@ -42,9 +42,15 @@ public class InputReaderSO : ScriptableObject, GameInput.IPlayerActions
     public event Action MoveEventCancelled;
     public event Action JumpEvent;
     public event Action JumpEventCancelled;
+    public event Action AttackEvent;
     public void OnAttack(InputAction.CallbackContext context)
     {
 
+        if (context.phase == InputActionPhase.Performed)
+        {
+            AttackEvent?.Invoke();
+            Debug.Log("OnAttack");
+        }
     }
 
 

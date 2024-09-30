@@ -9,6 +9,8 @@ public class MoveState : GroundedState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("move Enter");
+
     }
 
     public override void Exit()
